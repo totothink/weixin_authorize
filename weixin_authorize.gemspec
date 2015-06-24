@@ -26,7 +26,10 @@ Gem::Specification.new do |spec|
 
   # A streaming JSON parsing and encoding library for Ruby (C bindings to yajl)
   # https://github.com/brianmario/yajl-ruby
-  spec.add_dependency "yajl-ruby", ">= 1.2.0"
+  # yajl-ruby 不支持 jruby
+  if defined? RUBY_ENGINE && RUBY_ENGINE == 'ruby'
+    spec.add_dependency "yajl-ruby", ">= 1.2.0"
+  end
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake"
